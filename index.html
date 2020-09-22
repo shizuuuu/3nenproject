@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <script src="https://obniz.io/js/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/obniz@3.3.0/obniz.js"></script>
+    <script type="text/javascript">
+      var bool1 = false;
+      var bool2 = false;
+      var bool3 = false;
+      var bool4 = false;
+      var bool5 = false;
+    </script>
+    <script src="./timer.js"></script>
+    <style type="text/css">
+    <!--
+    body { background-color:#FFFFFF; }
+    h3 { text-align:center; }
+    .one { text-align:right; }
+    .two { text-align:right; }
+    .three { text-align:right; }
+    .four { text-align:right; }
+    .five { text-align:right; }
+    -->
+    </style>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    </script>
+</head>
+<body>
+  <div id="obniz-debug"></div>
+  <h3>クローゼットの肥やし復活ハンガー</h3>
+  <div class="one">
+  <div id="printOne"></div>
+  <p id="timer1"></p></div>
+  <br>
+  <div class="two">
+  <div id="printTwo"></div>
+  <p id="timer2"></p></div>
+  <br>
+  <div class="three">
+  <div id="printThree"></div>
+  <p id="timer3"></p></div>
+  <br>
+  <div class="four">
+  <div id="printFour"></div>
+  <p id="timer4"></p></div>
+  <br>
+  <div class="five">
+  <div id="printFive"></div>
+  <p id="timer5"></p></div>
+  <br>
+
+  <script>
+  // センサー
+  var obniz = new Obniz("25481196");
+  obniz.onconnect = async function () {
+    var pressureOne = obniz.wired("FSR40X", {pin0:0, pin1:1});
+    var pressureTwo = obniz.wired("FSR40X", {pin0:2, pin1:3});
+    var pressureThree = obniz.wired("FSR40X", {pin0:4, pin1:5});
+    var pressureFour = obniz.wired("FSR40X", {pin0:6, pin1:7});
+    var pressureFive = obniz.wired("FSR40X", {pin0:8, pin1:9});
+    pressureOne.onchange = function(press) {
+      if (press < 290) {
+        $("#printOne").text("ハンガー1: 使用中");
+        // 値 = press.toFixed(1)
+        bool1 = false;
+      } else {
+        $("#printOne").text("ハンガー1: 未使用" );
+        bool1 = true;
+      }
+    }
+    pressureTwo.onchange = function(press) {
+      if (press < 290) {
+        $("#printTwo").text("ハンガー2: 使用中");
+        bool2 = false;
+      } else {
+        $("#printTwo").text("ハンガー2: 未使用");
+        bool2 = true;
+      }
+    }
+    pressureThree.onchange = function(press) {
+      if (press < 290) {
+        $("#printThree").text("ハンガー3: 使用中");
+        bool3 = false;
+      } else {
+        $("#printThree").text("ハンガー3: 未使用");
+        bool3 = true;
+      }
+    }
+    pressureFour.onchange = function(press) {
+      if (press < 290) {
+        $("#printFour").text("ハンガー4: 使用中");
+        bool4 = false;
+      } else {
+        $("#printFour").text("ハンガー4: 未使用");
+        bool4 = true;
+      }
+    }
+    pressureFive.onchange = function(press) {
+      if (press < 290) {
+        $("#printFive").text("ハンガー5: 使用中");
+        bool5 = false;
+      } else {
+        $("#printFive").text("ハンガー5: 未使用");
+        bool5 = true;
+      }
+    }
+  }
+</script>
+</body>
+</html>
