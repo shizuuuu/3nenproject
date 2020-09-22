@@ -57,7 +57,7 @@
 
   <script>
   // センサー
-  var obniz = new Obniz("25481196");
+  var obniz = new Obniz("XXXXXXXX");
   obniz.onconnect = async function () {
     var pressureOne = obniz.wired("FSR40X", {pin0:0, pin1:1});
     var pressureTwo = obniz.wired("FSR40X", {pin0:2, pin1:3});
